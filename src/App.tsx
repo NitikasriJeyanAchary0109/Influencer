@@ -15,6 +15,7 @@ import Posts from './pages/Posts'
 import Payments from './pages/Payments'
 import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
+import Checkout from './pages/Checkout'
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { user, loading } = useAuth()
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<Landing/>}/>
             <Route path="/login" element={<PublicRoute><Login/></PublicRoute>}/>
             <Route path="/register" element={<PublicRoute><Register/></PublicRoute>}/>
+            <Route path="/checkout" element={<PublicRoute><Checkout/></PublicRoute>}/>
 
             {/* Protected Core App Dashboard */}
             <Route path="/" element={<ProtectedRoute><AppLayout/></ProtectedRoute>}>

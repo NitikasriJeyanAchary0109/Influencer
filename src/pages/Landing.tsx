@@ -1,90 +1,188 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Check, ArrowRight, Shield, Rocket, LineChart, Star, Activity, Sparkles, Brain, Award, Bell } from 'lucide-react'
+import React, { useRef, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Globe, ArrowRight, Instagram, Twitter } from 'lucide-react'
 
 const Landing: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [opacity, setOpacity] = useState(0)
+  const fadingOutRef = useRef(false)
+  const animFrameRef = useRef<number>()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const fadeDuration = 500
+    let lastTime: number | null = null
+
+    const animateFade = (targetOpacity: number, timestamp: number) => {
+      if (!lastTime) lastTime = timestamp
+      const delta = timestamp - lastTime
+      
+      setOpacity((prevOpacity) => {
+        let newOpacity
+        if (targetOpacity > prevOpacity) {
+          // Fading in
+          newOpacity = Math.min(prevOpacity + delta / fadeDuration, targetOpacity)
+        } else {
+          // Fading out
+          newOpacity = Math.max(prevOpacity - delta / fadeDuration, targetOpacity)
+        }
+        
+        if (newOpacity !== targetOpacity) {
+          animFrameRef.current = requestAnimationFrame((ts) => animateFade(targetOpacity, ts))
+        } else {
+          if (targetOpacity === 0) {
+            fadingOutRef.current = false
+          }
+        }
+        return newOpacity
+      })
+      lastTime = timestamp
+    }
+
+    const startFadeIn = () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current)
+      lastTime = null
+      animFrameRef.current = requestAnimationFrame((ts) => animateFade(1, ts))
+    }
+
+    const startFadeOut = () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current)
+      lastTime = null
+      animFrameRef.current = requestAnimationFrame((ts) => animateFade(0, ts))
+    }
+
+    const handleTimeUpdate = () => {
+      if (!video.duration) return
+      const timeLeft = video.duration - video.currentTime
+      if (timeLeft <= 0.55 && !fadingOutRef.current) {
+        fadingOutRef.current = true
+        startFadeOut()
+      }
+    }
+
+    const handleEnded = () => {
+      setOpacity(0)
+      setTimeout(() => {
+        video.currentTime = 0
+        video.play().then(() => {
+          fadingOutRef.current = false
+          startFadeIn()
+        }).catch(() => {})
+      }, 100)
+    }
+
+    const handlePlay = () => {
+      if (opacity === 0 && !fadingOutRef.current) {
+         startFadeIn()
+      }
+    }
+
+    video.addEventListener('timeupdate', handleTimeUpdate)
+    video.addEventListener('ended', handleEnded)
+    video.addEventListener('play', handlePlay)
+
+    // Force play in case autoplay policy blocked it
+    video.play().catch(() => {})
+
+    return () => {
+      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current)
+      video.removeEventListener('timeupdate', handleTimeUpdate)
+      video.removeEventListener('ended', handleEnded)
+      video.removeEventListener('play', handlePlay)
+    }
+  }, [opacity])
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault()
+    navigate('/checkout?plan=growth')
+  }
+
   return (
-    <div className="landing">
-      <nav className="landing-nav glass-panel" style={{ borderBottom: '1px solid var(--border)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, var(--primary), var(--primary-dark))', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800 }}>I</div>
-          <span style={{ fontWeight: 800, fontSize: 18, background: 'linear-gradient(135deg, var(--text) 0%, var(--primary) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>InfluenceFlow AI</span>
-        </div>
-        <div style={{ display: 'flex', gap: 16 }}>
-          <Link to="/login" className="btn btn-secondary btn-sm" style={{ padding: '8px 16px' }}>Sign In</Link>
-          <Link to="/register" className="btn btn-primary btn-sm glow-btn" style={{ padding: '8px 16px' }}>Get Started</Link>
+    <div className="min-h-screen bg-black overflow-hidden flex flex-col relative font-sans">
+      {/* Background Video */}
+      <video
+        ref={videoRef}
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_115001_bcdaa3b4-03de-47e7-ad63-ae3e392c32d4.mp4"
+        autoPlay
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover translate-y-[17%]"
+        style={{ opacity }}
+      />
+
+      {/* Navigation */}
+      <nav className="relative z-20 pl-6 pr-6 py-6 w-full">
+        <div className="rounded-full px-6 py-3 flex items-center justify-between max-w-5xl mx-auto liquid-glass">
+          <div className="flex items-center gap-8">
+            <Link to="/" className="flex items-center gap-2">
+              <Globe size={24} className="text-white" />
+              <span className="text-white font-semibold text-lg">Asme</span>
+            </Link>
+            <div className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-white/80 hover:text-white transition-colors text-sm font-medium">Features</Link>
+              <Link to="/" className="text-white/80 hover:text-white transition-colors text-sm font-medium">Pricing</Link>
+              <Link to="/" className="text-white/80 hover:text-white transition-colors text-sm font-medium">About</Link>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link to="/checkout?plan=growth" className="text-white text-sm font-medium hover:text-white/80 transition-colors">Sign Up</Link>
+            <Link to="/login" className="liquid-glass rounded-full px-6 py-2 text-white text-sm font-medium hover:bg-white/5 transition-colors">Login</Link>
+          </div>
         </div>
       </nav>
 
-      <header className="landing-hero" style={{ padding: '120px 24px 90px' }}>
-        <span className="hero-badge" style={{ marginBottom: 20 }}>
-          <Sparkles size={13}/> Enterprise-Grade AI CRM for Smart Brands
-        </span>
-        <h1 className="hero-title" style={{ letterSpacing: '-0.03em', lineHeight: 1.15 }}>Track Influencers.<br/>Predict ROI. Streamline Flow.</h1>
-        <p className="hero-sub" style={{ fontSize: 18, maxWidth: '620px', color: 'var(--text-muted)', marginBottom: 40 }}>
-          The premium full-stack dashboard to discover top-performing creators, monitor automated campaign metrics, audit live health scores, and automate payments.
-        </p>
-        <div className="hero-actions">
-          <Link to="/register" className="btn btn-primary glow-btn" style={{ padding: '14px 32px', fontSize: 15 }}>
-            Accelerate Influencer ROI Today <ArrowRight size={16}/>
-          </Link>
-        </div>
-      </header>
-
-      <section className="section">
-        <h2 className="section-title" style={{ letterSpacing: '-0.02em' }}>Fully Automated Influencer Engine</h2>
-        <p className="section-sub" style={{ maxWidth: '600px', margin: '0 auto 48px' }}>
-          Stop juggling spreadsheets and manual logs. Deploy InfluenceFlow AI to centralize communications and calculate campaign returns instantly.
-        </p>
+      {/* Hero Content */}
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center -translate-y-[20%]">
+        <h1 
+          className="text-5xl md:text-6xl lg:text-7xl text-white mb-8 tracking-tight whitespace-nowrap"
+          style={{ fontFamily: "'Instrument Serif', serif" }}
+        >
+          Built for the curious
+        </h1>
         
-        <div className="features-grid">
-          {[
-            { icon: <Shield style={{ color: '#6366f1' }}/>, name: 'Influencer CRM', desc: 'Centralize contacts, handles, contracts, and performance history secure in one visual workspace.' },
-            { icon: <Brain style={{ color: '#10b981' }}/>, name: 'AI Recommendation Engine', desc: 'Instantly generate high-ROI recommendations tailored to Tech, Fashion, Food, Beauty, or Lifestyle niches.' },
-            { icon: <LineChart style={{ color: '#f59e0b' }}/>, name: 'Metrics Autopilot', desc: 'Add content post URLs and let our engine automatically generate reach, impressions, likes, and sales revenue.' },
-            { icon: <Award style={{ color: '#06b6d4' }}/>, name: 'Campaign Health index', desc: 'Audit active campaign performance with real-time health scores out of 100 assessing conversion parameters.' },
-            { icon: <Bell style={{ color: '#ef4444' }}/>, name: 'Smart Alerts Engine', desc: 'Stay reactive with immediate alerts on upcoming payments, overdue dues, and high-performing creator ROIs.' },
-            { icon: <Activity style={{ color: '#8b5cf6' }}/>, name: 'ROI Analytics Matrix', desc: 'Extract accurate Cost Per Engagement (CPE) and Cost Per Reach (CPR) to double down on what works.' }
-          ].map(f => (
-            <div key={f.name} className="feature-card glass-panel" style={{ border: '1px solid var(--border)' }}>
-              <div className="feature-icon" style={{ background: 'var(--bg)' }}>{f.icon}</div>
-              <h3 className="feature-name" style={{ color: 'var(--text)', fontSize: 16 }}>{f.name}</h3>
-              <p className="feature-desc" style={{ color: 'var(--text-muted)', fontSize: 13, lineHeight: 1.5 }}>{f.desc}</p>
-            </div>
-          ))}
+        <div className="max-w-xl w-full space-y-4">
+          <form onSubmit={handleSignup} className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3">
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-white/40 text-base"
+              required
+            />
+            <button 
+              type="submit"
+              className="bg-white rounded-full p-3 text-black hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black"
+              aria-label="Subscribe"
+            >
+              <ArrowRight size={20} />
+            </button>
+          </form>
+          
+          <p className="text-white text-sm leading-relaxed px-4 opacity-90">
+            Stay updated with the latest news and insights. Subscribe to our newsletter today and never miss out on exciting updates.
+          </p>
+          
+          <div className="pt-4">
+            <button className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors">
+              Manifesto
+            </button>
+          </div>
         </div>
-      </section>
+      </main>
 
-      <section className="section" style={{ borderTop: '1px solid var(--border)' }}>
-        <h2 className="section-title" style={{ letterSpacing: '-0.02em' }}>Scale Campaign Profitability</h2>
-        <p className="section-sub">Choose a model built to supercharge brand visibility and conversions.</p>
-
-        <div className="pricing-grid">
-          {[
-            { label: 'Starter', price: 'Free', features: ['Up to 5 CRM Influencers', '2 Active Campaigns', 'Manual Metrics Input', 'Dynamic Smart Alerts', 'Basic Analytics Reports'] },
-            { label: 'Growth', price: '₹2,499', period: '/month', featured: true, features: ['Up to 25 CRM Influencers', '10 Active Campaigns', 'AI Influencer Recommendations', 'Automated Post Scraper Sim', 'Cost Per Engagement (CPE) Rollups', 'Automatic Upcoming Due Notices'] },
-            { label: 'Pro', price: '₹6,599', period: '/month', features: ['Unlimited CRM Influencers', 'Unlimited Campaigns', 'Full Category AI Model Recommendations', 'Real-time Campaign Health Auditing', 'Priority High ROI Creator Alerts', 'Export PDF Financial Reports'] }
-          ].map(p => (
-            <div key={p.label} className={`pricing-card glass-panel ${p.featured ? 'featured' : ''}`} style={{ border: p.featured ? '2px solid var(--primary)' : '1px solid var(--border)' }}>
-              {p.featured && <span className="pricing-badge glow-btn">RECOMMENDED</span>}
-              <div className="pricing-label" style={{ fontSize: 12 }}>{p.label}</div>
-              <div className="pricing-price" style={{ fontSize: 38, fontWeight: 900, color: 'var(--text)' }}>{p.price}</div>
-              {p.period && <div className="pricing-period">{p.period}</div>}
-              <ul className="pricing-features" style={{ margin: '20px 0 28px' }}>
-                {p.features.map(f => (
-                  <li key={f} className="pricing-feature" style={{ fontSize: 13, color: 'var(--text-muted)' }}><Check size={14} style={{ color: 'var(--success)', flexShrink: 0 }}/> {f}</li>
-                ))}
-              </ul>
-              <Link to="/register" className={`btn ${p.featured ? 'btn-primary glow-btn' : 'btn-secondary'}`} style={{ width: '100%', justifyContent: 'center', padding: '10px' }}>
-                Deploy Now
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="landing-footer glass-panel" style={{ borderTop: '1px solid var(--border)', padding: '24px 16px' }}>
-        © {new Date().getFullYear()} InfluenceFlow AI. Crafted for placement excellence and modern brands.
+      {/* Social Footer */}
+      <footer className="relative z-10 flex justify-center gap-4 pb-12 mt-auto">
+        <a href="#" aria-label="Instagram" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all">
+          <Instagram size={20} />
+        </a>
+        <a href="#" aria-label="Twitter" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all">
+          <Twitter size={20} />
+        </a>
+        <a href="#" aria-label="Website" className="liquid-glass rounded-full p-4 text-white/80 hover:text-white hover:bg-white/5 transition-all">
+          <Globe size={20} />
+        </a>
       </footer>
     </div>
   )
