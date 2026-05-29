@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.43.4",
+    "axios": "^1.16.1",
     "chart.js": "^4.4.3",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.395.0",
