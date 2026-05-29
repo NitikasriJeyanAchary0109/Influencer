@@ -1,6 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
-import type { User } from '@supabase/supabase-js'
+
+interface User {
+  id: string
+  email: string
+  [key: string]: any
+}
 
 interface Brand {
   brand_id: string

@@ -1,9 +1,7 @@
-import { createClient } from '@supabase/supabase-js'
-
-// Try to initialize standard client in case of fallback
-const supabaseUrl = (import.meta as any).env.VITE_SUPABASE_URL || 'https://elhwmkbygzamkxohoqih.supabase.co'
-const supabaseAnonKey = (import.meta as any).env.VITE_SUPABASE_ANON_KEY || ''
-const realSupabase = createClient(supabaseUrl, supabaseAnonKey)
+// ==========================================
+// NOTE: Using client-side localStorage emulator instead of real Supabase
+// to allow the app to work without a live Supabase project.
+// ==========================================
 
 // ==========================================
 // CLIENT-SIDE LOCAL STORAGE EMULATOR
