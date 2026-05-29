@@ -3,8 +3,10 @@ import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
 import Modal from '../components/ui/Modal'
 import { useToast } from '../components/ui/Toast'
-import { Plus, Edit2, Trash2, Search, Trophy } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
+import { Plus, Edit2, Trash2, Search, Trophy, Instagram, Download } from 'lucide-react'
 import { formatNumber, formatPercent } from '../lib/utils'
+import { fetchInstagramProfile } from '../lib/instagram'
 import AIRecommendation from '../components/AIRecommendation'
 
 interface Influencer { influencer_id: string; name: string; instagram_handle: string; email: string; phone: string; niche: string; followers: number; engagement_rate: number }
@@ -23,6 +25,9 @@ const Influencers: React.FC = () => {
   const [search, setSearch] = useState('')
   const [nicheFilter, setNicheFilter] = useState('All')
   const [activeTab, setActiveTab] = useState<'list' | 'ai'>('list')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [igImportHandle, setIgImportHandle] = useState('')
+  const [importingIg, setImportingIg] = useState(false)
 
   const load = useCallback(async () => {
     if (!brand) return
@@ -33,7 +38,24 @@ const Influencers: React.FC = () => {
 
   useEffect(() => { load() }, [load])
 
-  const openCreate = () => { setEditing(null); setForm(empty); setModalOpen(true) }
+  useEffect(() => {
+    const addIg = searchParams.get('add_ig')
+    if (addIg) {
+      setEditing(null)
+      setForm({
+        ...empty,
+        name: searchParams.get('name') || addIg,
+        instagram_handle: addIg,
+        followers: searchParams.get('followers') || '',
+        engagement_rate: searchParams.get('engagement') || ''
+      })
+      setModalOpen(true)
+      // Clear the params so a refresh doesn't trigger it again
+      setSearchParams({})
+    }
+  }, [searchParams, setSearchParams])
+
+  const openCreate = () => { setEditing(null); setForm(empty); setIgImportHandle(''); setModalOpen(true) }
   const openEdit = (inf: Influencer) => {
     setEditing(inf)
     setForm({ name: inf.name, instagram_handle: inf.instagram_handle || '', email: inf.email || '', phone: inf.phone || '', niche: inf.niche || '', followers: String(inf.followers), engagement_rate: String(inf.engagement_rate) })
@@ -59,6 +81,26 @@ const Influencers: React.FC = () => {
     if (!confirm('Delete this influencer?')) return
     await supabase.from('influencers').delete().eq('influencer_id', id)
     showToast('success', 'Influencer deleted'); load()
+  }
+
+  const handleIgImport = async () => {
+    if (!igImportHandle) return
+    setImportingIg(true)
+    try {
+      const data = await fetchInstagramProfile(igImportHandle)
+      setForm(f => ({
+        ...f,
+        name: data.fullName,
+        instagram_handle: data.username,
+        followers: String(data.followers),
+        engagement_rate: String(data.engagementRate)
+      }))
+      showToast('success', 'Instagram profile data fetched!')
+    } catch (err: any) {
+      showToast('error', err.message || 'Failed to fetch Instagram data')
+    } finally {
+      setImportingIg(false)
+    }
   }
 
   const filtered = influencers.filter(inf => {
@@ -153,6 +195,37 @@ const Influencers: React.FC = () => {
 
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editing ? 'Edit Influencer' : 'Add Influencer'} size="lg"
         footer={<><button className="btn btn-secondary" onClick={() => setModalOpen(false)}>Cancel</button><button className="btn btn-primary" onClick={handleSave}>Save</button></>}>
+        
+        {!editing && (
+          <div style={{ marginBottom: 24, padding: 16, background: 'rgba(225, 48, 108, 0.05)', border: '1px solid rgba(225, 48, 108, 0.2)', borderRadius: 'var(--radius-sm)' }}>
+            <label className="form-label" style={{ color: '#e1306c', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <Instagram size={14}/> Import from Instagram
+            </label>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <div style={{ position: 'relative', flex: 1 }}>
+                <span style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }}>@</span>
+                <input 
+                  className="form-input" 
+                  style={{ paddingLeft: 28 }} 
+                  placeholder="username" 
+                  value={igImportHandle} 
+                  onChange={e => setIgImportHandle(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleIgImport()}
+                />
+              </div>
+              <button 
+                className="btn btn-primary glow-btn" 
+                style={{ background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)', border: 'none' }}
+                onClick={handleIgImport}
+                disabled={importingIg || !igImportHandle}
+              >
+                {importingIg ? <div className="spinner" style={{ width: 14, height: 14 }}/> : <Download size={14}/>} 
+                Fetch Data
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="form-row">
           <div className="form-group"><label className="form-label">Full Name *</label><input className="form-input" placeholder="Priya Sharma" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}/></div>
           <div className="form-group"><label className="form-label">Instagram Handle</label><input className="form-input" placeholder="priya_eats" value={form.instagram_handle} onChange={e => setForm(f => ({ ...f, instagram_handle: e.target.value }))}/></div>

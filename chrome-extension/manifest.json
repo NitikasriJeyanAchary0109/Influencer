@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "InfluenceFlow AI Companion",
+  "version": "1.0",
+  "description": "Seamlessly import Instagram influencers into your InfluenceFlow CRM directly from their profile page.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*.instagram.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "icons": {}
+}
