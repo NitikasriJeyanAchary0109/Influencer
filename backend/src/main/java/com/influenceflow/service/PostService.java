@@ -19,11 +19,11 @@ public class PostService {
     }
 
     public List<Post> getPostsByCampaign(String campaignId) {
-        return postRepository.findByCampaignId(campaignId);
+        return postRepository.findByCampaignCampaignId(campaignId);
     }
 
     public List<Post> getPostsByInfluencer(String influencerId) {
-        return postRepository.findByInfluencerId(influencerId);
+        return postRepository.findByInfluencerInfluencerId(influencerId);
     }
 
     public Optional<Post> getPostById(String id) {

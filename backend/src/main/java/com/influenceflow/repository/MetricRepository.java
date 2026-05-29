@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface MetricRepository extends JpaRepository<Metric, String> {
-    Optional<Metric> findByPostId(String postId);
+    Optional<Metric> findByPostPostId(String postId);
 }

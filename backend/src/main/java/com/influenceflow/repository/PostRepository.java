@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, String> {
-    List<Post> findByCampaignId(String campaignId);
-    List<Post> findByInfluencerId(String influencerId);
+    List<Post> findByCampaignCampaignId(String campaignId);
+    List<Post> findByInfluencerInfluencerId(String influencerId);
 }

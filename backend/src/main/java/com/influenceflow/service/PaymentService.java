@@ -20,11 +20,11 @@ public class PaymentService {
     }
 
     public List<Payment> getPaymentsByCampaign(String campaignId) {
-        return paymentRepository.findByCampaignId(campaignId);
+        return paymentRepository.findByCampaignCampaignId(campaignId);
     }
 
     public List<Payment> getPaymentsByInfluencer(String influencerId) {
-        return paymentRepository.findByInfluencerId(influencerId);
+        return paymentRepository.findByInfluencerInfluencerId(influencerId);
     }
 
     public Optional<Payment> getPaymentById(String id) {

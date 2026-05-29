@@ -19,7 +19,7 @@ public class InfluencerService {
     }
 
     public List<Influencer> getInfluencersByBrand(String brandId) {
-        return influencerRepository.findByBrandId(brandId);
+        return influencerRepository.findByBrandBrandId(brandId);
     }
 
     public Optional<Influencer> getInfluencerById(String id) {

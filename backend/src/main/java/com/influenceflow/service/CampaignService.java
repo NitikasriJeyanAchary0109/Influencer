@@ -19,7 +19,7 @@ public class CampaignService {
     }
 
     public List<Campaign> getCampaignsByBrand(String brandId) {
-        return campaignRepository.findByBrandId(brandId);
+        return campaignRepository.findByBrandBrandId(brandId);
     }
 
     public Optional<Campaign> getCampaignById(String id) {

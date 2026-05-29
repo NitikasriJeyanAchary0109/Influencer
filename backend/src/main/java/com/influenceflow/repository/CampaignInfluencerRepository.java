@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CampaignInfluencerRepository extends JpaRepository<CampaignInfluencer, String> {
-    List<CampaignInfluencer> findByCampaignId(String campaignId);
-    List<CampaignInfluencer> findByInfluencerId(String influencerId);
+    List<CampaignInfluencer> findByCampaignCampaignId(String campaignId);
+    List<CampaignInfluencer> findByInfluencerInfluencerId(String influencerId);
 }

@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PaymentRepository extends JpaRepository<Payment, String> {
-    List<Payment> findByCampaignId(String campaignId);
-    List<Payment> findByInfluencerId(String influencerId);
+    List<Payment> findByCampaignCampaignId(String campaignId);
+    List<Payment> findByInfluencerInfluencerId(String influencerId);
 }

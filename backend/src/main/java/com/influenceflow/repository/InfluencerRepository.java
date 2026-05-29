@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface InfluencerRepository extends JpaRepository<Influencer, String> {
-    List<Influencer> findByBrandId(String brandId);
+    List<Influencer> findByBrandBrandId(String brandId);
 }

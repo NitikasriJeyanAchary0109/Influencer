@@ -23,8 +23,8 @@ public class DashboardService {
     public Map<String, Object> getDashboardMetrics(String brandId) {
         Map<String, Object> metrics = new HashMap<>();
 
-        long totalCampaigns = campaignRepository.findByBrandId(brandId).size();
-        long totalInfluencers = influencerRepository.findByBrandId(brandId).size();
+        long totalCampaigns = campaignRepository.findByBrandBrandId(brandId).size();
+        long totalInfluencers = influencerRepository.findByBrandBrandId(brandId).size();
 
         // In a real application, you might want more optimized queries
         double totalSpend = paymentRepository.findAll().stream()
