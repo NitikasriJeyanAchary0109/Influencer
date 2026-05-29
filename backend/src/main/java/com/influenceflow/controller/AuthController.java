@@ -27,4 +27,15 @@ public class AuthController {
         User user = authService.registerUser(registerRequest);
         return ResponseEntity.ok(user);
     }
+
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(org.springframework.security.core.Authentication authentication) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(401).build();
+        }
+        com.influenceflow.security.UserDetailsImpl userDetails = (com.influenceflow.security.UserDetailsImpl) authentication.getPrincipal();
+        return authService.getUserById(userDetails.getId())
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

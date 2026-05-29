@@ -2,6 +2,7 @@ package com.influenceflow.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ public class Campaign {
 
     @Id
     @Column(name = "campaign_id", length = 36)
+    @JsonProperty("id")
     private String campaignId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,6 +27,7 @@ public class Campaign {
     private Brand brand;
 
     @Column(name = "campaign_name", nullable = false, length = 100)
+    @JsonProperty("title")
     private String campaignName;
 
     @Column(columnDefinition = "TEXT")

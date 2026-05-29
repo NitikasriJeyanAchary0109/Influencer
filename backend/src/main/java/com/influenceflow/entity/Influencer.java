@@ -2,6 +2,7 @@ package com.influenceflow.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,6 +18,7 @@ public class Influencer {
 
     @Id
     @Column(name = "influencer_id", length = 36)
+    @JsonProperty("id")
     private String influencerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -27,6 +29,7 @@ public class Influencer {
     private String name;
 
     @Column(name = "instagram_handle", length = 100)
+    @JsonProperty("platformHandle")
     private String instagramHandle;
 
     @Column(length = 100)

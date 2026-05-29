@@ -41,7 +41,7 @@ public class CampaignController {
     public ResponseEntity<Campaign> updateCampaign(@PathVariable String id, @RequestBody Campaign campaignDetails) {
         return campaignService.getCampaignById(id)
                 .map(campaign -> {
-                    campaign.setTitle(campaignDetails.getTitle());
+                    campaign.setCampaignName(campaignDetails.getCampaignName());
                     campaign.setDescription(campaignDetails.getDescription());
                     campaign.setStartDate(campaignDetails.getStartDate());
                     campaign.setEndDate(campaignDetails.getEndDate());

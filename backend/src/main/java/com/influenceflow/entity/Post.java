@@ -2,6 +2,7 @@ package com.influenceflow.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -17,6 +18,7 @@ public class Post {
 
     @Id
     @Column(name = "post_id", length = 36)
+    @JsonProperty("id")
     private String postId;
 
     @ManyToOne(fetch = FetchType.LAZY)

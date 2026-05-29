@@ -32,8 +32,8 @@ public class PaymentService {
     }
 
     public Payment savePayment(Payment payment) {
-        if ("PENDING".equals(payment.getStatus()) && payment.getDueDate() != null && payment.getDueDate().isBefore(LocalDate.now())) {
-            payment.setStatus("OVERDUE");
+        if ("PENDING".equals(payment.getPaymentStatus()) && payment.getDueDate() != null && payment.getDueDate().isBefore(LocalDate.now())) {
+            payment.setPaymentStatus("OVERDUE");
         }
         return paymentRepository.save(payment);
     }

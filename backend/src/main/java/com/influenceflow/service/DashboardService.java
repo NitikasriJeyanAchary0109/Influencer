@@ -28,7 +28,7 @@ public class DashboardService {
 
         // In a real application, you might want more optimized queries
         double totalSpend = paymentRepository.findAll().stream()
-                .filter(p -> p.getCampaign() != null && p.getCampaign().getBrand() != null && brandId.equals(p.getCampaign().getBrand().getId()))
+                .filter(p -> p.getCampaign() != null && p.getCampaign().getBrand() != null && brandId.equals(p.getCampaign().getBrand().getBrandId()))
                 .mapToDouble(p -> p.getAmount() != null ? p.getAmount().doubleValue() : 0.0)
                 .sum();
 

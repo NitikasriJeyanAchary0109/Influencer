@@ -61,10 +61,9 @@ public class AuthService {
         }
 
         User user = new User();
-        user.setId(UUID.randomUUID().toString());
-        user.setName(registerRequest.getName());
+        user.setUserId(UUID.randomUUID().toString());
         user.setEmail(registerRequest.getEmail());
-        user.setPasswordHash(passwordEncoder.encode(registerRequest.getPassword()));
+        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
         Role userRole = roleRepository.findByName(registerRequest.getRole() != null ? registerRequest.getRole() : "BRAND_MANAGER")
                 .orElseThrow(() -> new RuntimeException("User Role not set."));
@@ -72,13 +71,17 @@ public class AuthService {
 
         if (registerRequest.getBrandName() != null) {
             Brand brand = new Brand();
-            brand.setId(UUID.randomUUID().toString());
-            brand.setName(registerRequest.getBrandName());
+            brand.setBrandId(UUID.randomUUID().toString());
+            brand.setBrandName(registerRequest.getBrandName());
             brand.setIndustry(registerRequest.getBrandIndustry());
             brandRepository.save(brand);
             user.setBrand(brand);
         }
 
         return userRepository.save(user);
+    }
+
+    public java.util.Optional<User> getUserById(String userId) {
+        return userRepository.findById(userId);
     }
 }

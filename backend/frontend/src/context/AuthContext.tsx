@@ -41,12 +41,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // For now, if there's a token, let's assume logged in. But to get details, we might need a dummy user.
       const token = localStorage.getItem('auth_token')
       if (token) {
-        // Mocking user load for now since we didn't add a /me endpoint yet
-        setUser({ id: 'dummy-id', email: 'user@example.com' })
-        // If the API had a /me endpoint, we would do:
-        // const { data } = await api.get('/auth/me')
-        // setUser(data)
-        // setBrand(data.brand)
+        const { data } = await api.get('/auth/me')
+        setUser(data)
+        setBrand(data.brand)
       } else {
         setUser(null)
         setBrand(null)
@@ -55,6 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.error(e)
       setUser(null)
       setBrand(null)
+      localStorage.removeItem('auth_token')
     } finally {
       setLoading(false)
     }

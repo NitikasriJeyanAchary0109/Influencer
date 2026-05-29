@@ -41,8 +41,8 @@ public class PaymentController {
     public ResponseEntity<Payment> updatePaymentStatus(@PathVariable String id, @RequestBody Payment paymentDetails) {
         return paymentService.getPaymentById(id)
                 .map(payment -> {
-                    payment.setStatus(paymentDetails.getStatus());
-                    payment.setPaidDate(paymentDetails.getPaidDate());
+                    payment.setPaymentStatus(paymentDetails.getPaymentStatus());
+                    payment.setPaymentDate(paymentDetails.getPaymentDate());
                     return ResponseEntity.ok(paymentService.savePayment(payment));
                 })
                 .orElse(ResponseEntity.notFound().build());

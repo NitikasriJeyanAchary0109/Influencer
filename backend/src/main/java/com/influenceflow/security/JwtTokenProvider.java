@@ -34,6 +34,7 @@ public class JwtTokenProvider {
     public String getUserIdFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(jwtSecret)
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -42,7 +43,7 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String authToken) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            Jwts.parser().setSigningKey(jwtSecret).build().parseClaimsJws(authToken);
             return true;
         } catch (Exception ex) {
             // Log exceptions if needed (e.g. ExpiredJwtException, UnsupportedJwtException, etc.)

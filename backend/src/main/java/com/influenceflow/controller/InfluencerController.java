@@ -42,7 +42,6 @@ public class InfluencerController {
         return influencerService.getInfluencerById(id)
                 .map(influencer -> {
                     influencer.setName(influencerDetails.getName());
-                    influencer.setPlatform(influencerDetails.getPlatform());
                     influencer.setFollowers(influencerDetails.getFollowers());
                     influencer.setEngagementRate(influencerDetails.getEngagementRate());
                     influencer.setNiche(influencerDetails.getNiche());
