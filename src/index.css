@@ -1,44 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --primary: #6366f1;
-  --primary-dark: #4f46e5;
-  --primary-light: #818cf8;
+:root, [data-theme="dark"] {
+  --primary: #d4f766;
+  --primary-dark: #bde03e;
+  --primary-light: #ecfccb;
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --bg: #f1f5f9;
+  --bg: #e5e7eb;
   --surface: #ffffff;
-  --surface2: #f8fafc;
+  --surface2: #f9fafb;
   --border: #e2e8f0;
-  --text: #0f172a;
+  --text: #1a1a1a;
   --text-muted: #64748b;
   --text-light: #94a3b8;
-  --sidebar-w: 260px;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.04);
-  --shadow-lg: 0 8px 32px rgba(99,102,241,.15);
-  --transition: all .2s ease;
-}
-
-[data-theme="dark"] {
-  --bg: #0f172a;
-  --surface: #1e293b;
-  --surface2: #273549;
-  --border: #334155;
-  --text: #f1f5f9;
-  --text-muted: #94a3b8;
-  --text-light: #64748b;
-  --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.2);
+  --sidebar-w: 0px;
+  --radius: 24px;
+  --radius-sm: 12px;
+  --shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.08);
+  --transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -113,8 +102,8 @@ input, select, textarea { font-family: inherit; }
   font-size: 14px; font-weight: 600; border: none;
   transition: var(--transition); cursor: pointer;
 }
-.btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.btn-primary { background: var(--primary); color: #000000; font-weight: 700; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px 0 rgba(212, 247, 102, 0.4); }
 .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
 .btn-secondary:hover { background: var(--border); }
 .btn-danger { background: rgba(239,68,68,.1); color: var(--danger); border: 1px solid rgba(239,68,68,.2); }
@@ -280,7 +269,7 @@ tbody tr:hover { background: var(--surface2); }
 
 /* Page header */
 .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-.page-title { font-size: 24px; font-weight: 800; }
+.page-title { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; }
 .page-sub { font-size: 14px; color: var(--text-muted); margin-top: 2px; }
 
 /* Tabs */
@@ -381,16 +370,9 @@ tbody tr:hover { background: var(--surface2); }
   transform: translateY(-1px);
 }
 .glass-panel {
-  background: rgba(255, 255, 255, 0.6) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4) !important;
-}
-[data-theme="dark"] .glass-panel {
-  background: rgba(30, 41, 59, 0.5) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  /* Simple rounded card with no blur */
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
 }
 
 /* AI Recommendation badge styles */

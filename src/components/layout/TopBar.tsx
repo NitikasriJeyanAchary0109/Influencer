@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Sun, Moon, Bell, AlertTriangle, AlertCircle, Sparkles, Award, Check } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { Sun, Moon, Bell, AlertTriangle, AlertCircle, Sparkles, Award, Check, MapPin, Settings, Layers } from 'lucide-react'
 import { useTheme } from '../../hooks/useTheme'
 import { supabase } from '../../lib/supabase'
 import { isOverdue, formatDate } from '../../lib/utils'
@@ -135,54 +136,93 @@ const TopBar: React.FC<Props> = ({ title, sub }) => {
     return () => clearInterval(interval)
   }, [])
 
+  const location = useLocation()
+  
+  const navLinks = [
+    { name: 'Home', path: '/dashboard' },
+    { name: 'Search', path: '/influencers' },
+    { name: 'Messages', path: '/campaigns' },
+    { name: 'Community', path: '/posts' },
+    { name: 'Resources', path: '/analytics' },
+  ]
+
   return (
-    <header className="topbar">
-      <div>
-        <h1 className="topbar-title">{title}</h1>
-        {sub && <div style={{ fontSize: 13, color: 'var(--text-muted)' }}>{sub}</div>}
+    <header className="flex items-center justify-between px-8 py-6 bg-transparent text-white">
+      {/* Logo & Navigation */}
+      <div className="flex items-center gap-12">
+        <Link to="/dashboard" className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#2a2a2a] rounded-xl flex items-center justify-center">
+            <Layers size={20} className="text-white" />
+          </div>
+        </Link>
+        
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => {
+            const isActive = location.pathname.startsWith(link.path)
+            return (
+              <Link 
+                key={link.name} 
+                to={link.path}
+                className={`relative py-2 text-sm font-semibold transition-colors ${
+                  isActive ? 'text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                {link.name}
+                {isActive && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary)] rounded-t-full" />
+                )}
+              </Link>
+            )
+          })}
+        </nav>
       </div>
-      <div className="topbar-actions" style={{ position: 'relative' }}>
-        {/* Theme Toggle */}
-        <button className="btn-icon animate-hover" title="Toggle theme" onClick={toggleTheme}>
-          {theme === 'dark' ? <Sun size={18}/> : <Moon size={18}/>}
-        </button>
 
-        {/* Notifications Dropdown */}
-        <button 
-          className="btn-icon animate-hover" 
-          title="Smart Alerts"
-          onClick={() => setShowDrawer(!showDrawer)}
-          style={{ position: 'relative' }}
-        >
-          <Bell size={18}/>
-          {alerts.length > 0 && alerts[0].id !== 'no-alerts' && (
-            <span style={{ 
-              position: 'absolute', 
-              top: 4, 
-              right: 4, 
-              width: 8, 
-              height: 8, 
-              background: 'var(--danger)', 
-              borderRadius: '50%' 
-            }}/>
-          )}
-        </button>
+      {/* Right Actions */}
+      <div className="flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-2 text-sm text-gray-400 font-medium">
+          <MapPin size={16} />
+          <span>London, UK</span>
+        </div>
+        
+        <div className="w-px h-6 bg-gray-800 mx-2 hidden lg:block" />
+        
+        <div className="flex items-center gap-4">
+          <button className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-colors">
+            <Settings size={18} />
+          </button>
+          
+          <button 
+            className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-colors relative"
+            onClick={() => setShowDrawer(!showDrawer)}
+          >
+            <Bell size={18} />
+            {alerts.length > 0 && alerts[0].id !== 'no-alerts' && (
+              <span className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[#1a1a1a]" />
+            )}
+          </button>
+          
+          <div className="flex items-center gap-3 ml-2">
+            <span className="text-sm font-semibold hidden md:block">Evelyn Munoz</span>
+            <img src="https://i.pravatar.cc/150?img=5" alt="Profile" className="w-10 h-10 rounded-full border border-gray-800" />
+          </div>
+        </div>
 
+        {/* Notifications Drawer */}
         {showDrawer && (
-          <div className="alert-drawer">
-            <div className="alert-drawer-title">
-              <span>Smart Alerts Engine</span>
-              <span className="badge" style={{ background: 'var(--bg)', color: 'var(--text-muted)' }}>
-                {alerts[0].id === 'no-alerts' ? 0 : alerts.length} Active
+          <div className="absolute top-20 right-8 w-80 bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden z-50 text-gray-900">
+            <div className="flex items-center justify-between p-4 border-b border-gray-100">
+              <span className="font-bold text-sm">Smart Alerts</span>
+              <span className="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full font-bold">
+                {alerts[0].id === 'no-alerts' ? 0 : alerts.length}
               </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, maxHeight: '280px', overflowY: 'auto' }}>
+            <div className="max-h-[300px] overflow-y-auto p-2">
               {alerts.map((item) => (
-                <div key={item.id} className="alert-drawer-item">
-                  {item.icon}
+                <div key={item.id} className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-xl transition-colors cursor-default">
+                  <div className="mt-0.5">{item.icon}</div>
                   <div>
-                    <div className="alert-drawer-item-title">{item.title}</div>
-                    <div className="alert-drawer-item-desc">{item.desc}</div>
+                    <div className="text-sm font-bold">{item.title}</div>
+                    <div className="text-xs text-gray-500 mt-1">{item.desc}</div>
                   </div>
                 </div>
               ))}

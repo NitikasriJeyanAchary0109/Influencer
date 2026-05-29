@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
 import { Bar, Doughnut, Line, Radar } from 'react-chartjs-2'
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, RadialLinearScale, PointElement, LineElement, Filler, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, RadialLinearScale, PointElement, LineElement, Filler, ArcElement, Tooltip, Legend, Title } from 'chart.js'
 import { formatCurrency, formatNumber, calcROI, calcCPE, calcCPR } from '../lib/utils'
 import KPICard from '../components/ui/KPICard'
 import { DollarSign, Eye, Award, Flame } from 'lucide-react'
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, RadialLinearScale, PointElement, LineElement, Filler, ArcElement, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, RadialLinearScale, PointElement, LineElement, Filler, ArcElement, Tooltip, Legend, Title)
+ChartJS.defaults.color = 'rgba(255, 255, 255, 0.7)'
+ChartJS.defaults.scale.grid.color = 'rgba(255, 255, 255, 0.1)'
 
 interface AnalyticsData {
   totalSpend: number

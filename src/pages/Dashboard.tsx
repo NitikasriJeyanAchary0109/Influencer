@@ -9,6 +9,8 @@ import { Line, Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Filler } from 'chart.js'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Filler)
+ChartJS.defaults.color = 'rgba(255, 255, 255, 0.7)'
+ChartJS.defaults.scale.grid.color = 'rgba(255, 255, 255, 0.1)'
 
 interface DashData {
   totalInfluencers: number
