@@ -4,12 +4,12 @@ import { useAuth } from '../context/AuthContext'
 import Modal from '../components/ui/Modal'
 import { useToast } from '../components/ui/Toast'
 import { useSearchParams } from 'react-router-dom'
-import { Plus, Edit2, Trash2, Search, Trophy, Instagram, Download } from 'lucide-react'
+import { Plus, Edit2, Trash2, Search, Trophy, Instagram, Download, BadgeCheck } from 'lucide-react'
 import { formatNumber, formatPercent } from '../lib/utils'
 import { fetchInstagramProfile } from '../lib/instagram'
 import AIRecommendation from '../components/AIRecommendation'
 
-interface Influencer { id: string; name: string; platformHandle: string; email: string; niche: string; followers: number; engagementRate: number; platform?: string }
+interface Influencer { id: string; name: string; platformHandle: string; email: string; niche: string; followers: number; engagementRate: number; platform?: string; isVerified?: boolean }
 
 const niches = ['Fashion', 'Beauty', 'Tech', 'Food', 'Travel', 'Fitness', 'Lifestyle', 'Gaming', 'Education', 'Finance', 'Other']
 const empty = { name: '', platformHandle: '', email: '', niche: '', followers: '', engagementRate: '' }
@@ -182,6 +182,7 @@ const Influencers: React.FC = () => {
                         <div>
                           <div style={{ fontWeight: 700, fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}>
                             {inf.name}
+                            {inf.isVerified !== false && <BadgeCheck size={16} className="text-blue-500" />}
                             {topPerformer?.id === inf.id && <span className="top-badge"><Trophy size={10}/> Top</span>}
                           </div>
                           <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>@{inf.platformHandle || '—'}</div>

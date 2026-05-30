@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Sparkles, UserPlus, Check, Instagram } from 'lucide-react'
+import { Sparkles, UserPlus, Check, Instagram, BadgeCheck } from 'lucide-react'
 import api from '../lib/api'
 import { useAuth } from '../context/AuthContext'
 import { useToast } from './ui/Toast'
@@ -385,7 +385,10 @@ export const AIRecommendation: React.FC<Props> = ({ onInfluencerRecruited }) => 
                 </div>
 
                 <div style={{ marginBottom: 12 }}>
-                  <h4 style={{ fontSize: 15, fontWeight: 700, margin: 0, color: 'var(--text)' }}>{rec.name}</h4>
+                  <h4 style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 15, fontWeight: 700, margin: 0, color: 'var(--text)' }}>
+                    {rec.name}
+                    <BadgeCheck size={16} className="text-blue-500" />
+                  </h4>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 13, color: 'var(--text-muted)', marginTop: 2 }}>
                     <Instagram size={12} />
                     <span>@{rec.instagram_handle}</span>

@@ -1,6 +1,7 @@
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/InfluenceFlowApplication.java
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/AnalyticsController.java
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/AuthController.java
+/Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/BrandController.java
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/CampaignController.java
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/DashboardController.java
 /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/controller/InfluencerController.java

@@ -50,6 +50,9 @@ public class Influencer {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "is_verified", columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private Boolean isVerified = true;
+
     @PrePersist
     protected void onCreate() {
         if (this.influencerId == null) {

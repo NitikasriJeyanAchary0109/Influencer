@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Bell, AlertTriangle, AlertCircle, Sparkles, Award, Check, MapPin, Settings, Layers } from 'lucide-react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Bell, AlertTriangle, AlertCircle, Sparkles, Award, Check, MapPin, Settings, Layers, BadgeCheck, LogOut } from 'lucide-react'
 import { useTheme } from '../../hooks/useTheme'
 import { useAuth } from '../../context/AuthContext'
 import api from '../../lib/api'
@@ -18,7 +18,13 @@ interface AlertItem {
 
 const TopBar: React.FC<Props> = ({ title, sub }) => {
   const { theme, toggleTheme } = useTheme()
-  const { brand } = useAuth()
+  const { brand, signOut } = useAuth()
+  const navigate = useNavigate()
+  
+  const handleSignOut = async () => {
+    await signOut()
+    navigate('/login')
+  }
   const [alerts, setAlerts] = useState<AlertItem[]>([])
   const [showDrawer, setShowDrawer] = useState(false)
 
@@ -207,6 +213,14 @@ const TopBar: React.FC<Props> = ({ title, sub }) => {
           </button>
           
           <button 
+            className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-500 transition-colors"
+            onClick={handleSignOut}
+            title="Log Out"
+          >
+            <LogOut size={18} />
+          </button>
+          
+          <button 
             className="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-600 transition-colors relative"
             onClick={() => setShowDrawer(!showDrawer)}
           >
@@ -217,7 +231,10 @@ const TopBar: React.FC<Props> = ({ title, sub }) => {
           </button>
           
           <div className="flex items-center gap-3 ml-2">
-            <span className="text-sm font-semibold hidden md:block">{brand?.brandName || 'Brand'}</span>
+            <span className="text-sm font-semibold hidden md:flex items-center gap-1">
+              {brand?.brandName || 'Brand'}
+              {brand?.isVerified !== false && <BadgeCheck size={16} className="text-blue-500" />}
+            </span>
             <img src={`https://ui-avatars.com/api/?name=${brand?.brandName || 'B'}&background=random`} alt="Profile" className="w-10 h-10 rounded-full border border-gray-800" />
           </div>
         </div>
