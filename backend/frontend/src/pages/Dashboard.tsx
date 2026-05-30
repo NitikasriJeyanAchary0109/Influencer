@@ -4,7 +4,7 @@ import api from '../lib/api'
 import { useAuth } from '../context/AuthContext'
 import KPICard from '../components/ui/KPICard'
 import { formatCurrency, calcROI, isOverdue } from '../lib/utils'
-import { Users, Target, DollarSign, TrendingUp, CreditCard, AlertTriangle, Activity } from 'lucide-react'
+import { Users, Target, DollarSign, TrendingUp, CreditCard, AlertTriangle, Activity, ShieldAlert } from 'lucide-react'
 import { Line, Doughnut } from 'react-chartjs-2'
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend, Filler } from 'chart.js'
 
@@ -106,6 +106,13 @@ const Dashboard: React.FC = () => {
 
   return (
     <>
+      {!brand?.isVerified && (
+        <div className="alert-bar" style={{ background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.3)', color: '#d97706', display: 'flex', alignItems: 'center', gap: 10, padding: '12px 20px', borderRadius: '12px', marginBottom: '20px', fontSize: '14px', fontWeight: 600 }}>
+          <ShieldAlert size={18}/> 
+          <span>Your Brand is currently <strong>Unverified</strong>. Business campaigns and outreach are disabled. Please submit business registration papers.</span>
+          <button className="btn btn-sm" style={{ marginLeft: 'auto', background: '#d97706', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 700 }} onClick={() => navigate('/settings')}>Verify Now</button>
+        </div>
+      )}
       {data.overdueCount > 0 && (
         <div className="alert-bar alert-danger">
           <AlertTriangle size={16}/> {data.overdueCount} overdue payment{data.overdueCount > 1 ? 's' : ''} totalling {formatCurrency(data.overdueAmount)} require immediate attention.

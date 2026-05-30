@@ -36,7 +36,8 @@ CREATE TABLE brands (
     industry VARCHAR(100),
     contact_email VARCHAR(100),
     contact_phone VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_verified BOOLEAN DEFAULT FALSE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- =====================================
@@ -67,6 +68,7 @@ CREATE TABLE influencers (
     followers INT DEFAULT 0,
     engagement_rate DECIMAL(5,2) DEFAULT 0.00,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_verified BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (brand_id) REFERENCES brands(brand_id) ON DELETE CASCADE,
     INDEX idx_influencers_brand (brand_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

@@ -35,8 +35,8 @@ public class Brand {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "is_verified", columnDefinition = "BOOLEAN DEFAULT TRUE")
-    private Boolean isVerified = true;
+    @Column(name = "is_verified", columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private Boolean isVerified = false;
 
     @PrePersist
     protected void onCreate() {

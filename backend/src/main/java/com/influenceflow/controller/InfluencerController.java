@@ -57,6 +57,9 @@ public class InfluencerController {
                     influencer.setEngagementRate(influencerDetails.getEngagementRate());
                     influencer.setNiche(influencerDetails.getNiche());
                     influencer.setEmail(influencerDetails.getEmail());
+                    if (influencerDetails.getIsVerified() != null) {
+                        influencer.setIsVerified(influencerDetails.getIsVerified());
+                    }
                     return ResponseEntity.ok(influencerService.saveInfluencer(influencer));
                 })
                 .orElse(ResponseEntity.notFound().build());

@@ -28,6 +28,9 @@ public class BrandController {
                     brand.setIndustry(brandDetails.getIndustry());
                     brand.setContactEmail(brandDetails.getContactEmail());
                     brand.setContactPhone(brandDetails.getContactPhone());
+                    if (brandDetails.getIsVerified() != null) {
+                        brand.setIsVerified(brandDetails.getIsVerified());
+                    }
                     return ResponseEntity.ok(brandRepository.save(brand));
                 })
                 .orElse(ResponseEntity.notFound().build());

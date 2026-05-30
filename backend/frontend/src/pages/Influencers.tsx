@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import Modal from '../components/ui/Modal'
 import { useToast } from '../components/ui/Toast'
 import { useSearchParams } from 'react-router-dom'
-import { Plus, Edit2, Trash2, Search, Trophy, Instagram, Download, BadgeCheck } from 'lucide-react'
+import { Plus, Edit2, Trash2, Search, Trophy, Instagram, Download, BadgeCheck, ShieldCheck } from 'lucide-react'
 import { formatNumber, formatPercent } from '../lib/utils'
 import { fetchInstagramProfile } from '../lib/instagram'
 import AIRecommendation from '../components/AIRecommendation'
@@ -12,7 +12,7 @@ import AIRecommendation from '../components/AIRecommendation'
 interface Influencer { id: string; name: string; platformHandle: string; email: string; niche: string; followers: number; engagementRate: number; platform?: string; isVerified?: boolean }
 
 const niches = ['Fashion', 'Beauty', 'Tech', 'Food', 'Travel', 'Fitness', 'Lifestyle', 'Gaming', 'Education', 'Finance', 'Other']
-const empty = { name: '', platformHandle: '', email: '', niche: '', followers: '', engagementRate: '' }
+const empty = { name: '', platformHandle: '', email: '', niche: '', followers: '', engagementRate: '', isVerified: 'false' }
 
 const Influencers: React.FC = () => {
   const { brand } = useAuth()
@@ -63,13 +63,28 @@ const Influencers: React.FC = () => {
   const openCreate = () => { setEditing(null); setForm(empty); setIgImportHandle(''); setModalOpen(true) }
   const openEdit = (inf: Influencer) => {
     setEditing(inf)
-    setForm({ name: inf.name, platformHandle: inf.platformHandle || '', email: inf.email || '', niche: inf.niche || '', followers: String(inf.followers), engagementRate: String(inf.engagementRate) })
+    setForm({ 
+      name: inf.name, 
+      platformHandle: inf.platformHandle || '', 
+      email: inf.email || '', 
+      niche: inf.niche || '', 
+      followers: String(inf.followers), 
+      engagementRate: String(inf.engagementRate),
+      isVerified: inf.isVerified ? 'true' : 'false'
+    })
     setModalOpen(true)
   }
 
   const handleSave = async () => {
     if (!brand || !form.name.trim()) return showToast('error', 'Name is required')
-    const payload = { ...form, followers: Number(form.followers), engagementRate: Number(form.engagementRate), brand: { id: brand.id }, platform: 'Instagram' }
+    const payload = { 
+      ...form, 
+      followers: Number(form.followers), 
+      engagementRate: Number(form.engagementRate), 
+      isVerified: form.isVerified === 'true',
+      brand: { id: brand.id }, 
+      platform: 'Instagram' 
+    }
     try {
       if (editing) {
         await api.put(`/influencers/${editing.id}`, payload)
@@ -82,6 +97,26 @@ const Influencers: React.FC = () => {
       load()
     } catch (error: any) {
       showToast('error', error.message || 'Failed to save influencer')
+    }
+  }
+
+  const handleQuickVerify = async (inf: Influencer) => {
+    if (!brand) return
+    try {
+      await api.put(`/influencers/${inf.id}`, {
+        name: inf.name,
+        platformHandle: inf.platformHandle,
+        email: inf.email,
+        niche: inf.niche,
+        followers: inf.followers,
+        engagementRate: inf.engagementRate,
+        isVerified: true,
+        brand: { id: brand.id }
+      })
+      showToast('success', `${inf.name} verified successfully!`)
+      load()
+    } catch (e) {
+      showToast('error', 'Failed to verify creator')
     }
   }
 
@@ -106,7 +141,8 @@ const Influencers: React.FC = () => {
         name: data.fullName,
         platformHandle: data.username,
         followers: String(data.followers),
-        engagementRate: String(data.engagementRate)
+        engagementRate: String(data.engagementRate),
+        isVerified: 'true' // imported profiles that match mock handles are auto-verified!
       }))
       showToast('success', 'Instagram profile data fetched!')
     } catch (err: any) {
@@ -182,13 +218,16 @@ const Influencers: React.FC = () => {
                         <div>
                           <div style={{ fontWeight: 700, fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}>
                             {inf.name}
-                            {inf.isVerified !== false && <BadgeCheck size={16} className="text-blue-500" />}
+                            {inf.isVerified && <BadgeCheck size={16} className="text-blue-500 fill-blue-500" />}
                             {topPerformer?.id === inf.id && <span className="top-badge"><Trophy size={10}/> Top</span>}
                           </div>
                           <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>@{inf.platformHandle || '—'}</div>
                         </div>
                       </div>
                       <div style={{ display: 'flex', gap: 4 }}>
+                        {!inf.isVerified && (
+                          <button className="btn-icon animate-hover text-emerald-500" onClick={() => handleQuickVerify(inf)} title="Verify Creator"><ShieldCheck size={13}/></button>
+                        )}
                         <button className="btn-icon animate-hover" onClick={() => openEdit(inf)}><Edit2 size={13}/></button>
                         <button className="btn-icon animate-hover" onClick={() => handleDelete(inf.id)} style={{ color: 'var(--danger)' }}><Trash2 size={13}/></button>
                       </div>
@@ -252,6 +291,18 @@ const Influencers: React.FC = () => {
           <div className="form-group"><label className="form-label">Followers</label><input type="number" className="form-input" placeholder="50000" value={form.followers} onChange={e => setForm(f => ({ ...f, followers: e.target.value }))}/></div>
         </div>
         <div className="form-group"><label className="form-label">Engagement Rate (%)</label><input type="number" step="0.01" className="form-input" placeholder="3.5" value={form.engagementRate} onChange={e => setForm(f => ({ ...f, engagementRate: e.target.value }))}/></div>
+        <div className="form-group" style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 16 }}>
+          <input 
+            type="checkbox" 
+            id="modal-is-verified"
+            style={{ width: 16, height: 16, cursor: 'pointer' }}
+            checked={form.isVerified === 'true'} 
+            onChange={e => setForm(f => ({ ...f, isVerified: e.target.checked ? 'true' : 'false' }))}
+          />
+          <label htmlFor="modal-is-verified" className="form-label" style={{ margin: 0, cursor: 'pointer', fontWeight: 600 }}>
+            Verified Partner (Anti-Scam Verified Status)
+          </label>
+        </div>
       </Modal>
     </>
   )

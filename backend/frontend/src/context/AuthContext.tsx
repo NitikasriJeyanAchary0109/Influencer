@@ -59,7 +59,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }
 
   const refreshBrand = async () => {
-    // Implement brand refresh if needed
+    try {
+      const token = localStorage.getItem('auth_token')
+      if (token) {
+        const { data } = await api.get('/auth/me')
+        setUser(data)
+        setBrand(data.brand)
+      }
+    } catch (e) {
+      console.error('Failed to refresh brand info', e)
+    }
   }
 
   useEffect(() => {

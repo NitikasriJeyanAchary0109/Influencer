@@ -18,6 +18,7 @@ const Checkout: React.FC = () => {
   const plan = plans[planKey] || plans.growth
   
   const [loading, setLoading] = useState(false)
+  const [email, setEmail] = useState(searchParams.get('email') || '')
   const [card, setCard] = useState('')
   const [expiry, setExpiry] = useState('')
   const [cvc, setCvc] = useState('')
@@ -37,7 +38,7 @@ const Checkout: React.FC = () => {
     setTimeout(() => {
       setLoading(false)
       showToast('success', "Payment successful! Let's set up your brand.")
-      navigate(`/register?plan=${planKey}`)
+      navigate(`/register?plan=${planKey}&email=${encodeURIComponent(email)}`)
     }, 1500)
   }
 
@@ -97,7 +98,14 @@ const Checkout: React.FC = () => {
           <form onSubmit={handlePayment} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label className="form-label">Email Address</label>
-              <input type="email" className="form-input" placeholder="you@company.com" required/>
+              <input 
+                type="email" 
+                className="form-input" 
+                placeholder="you@company.com" 
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
             </div>
             
             <div className="form-group" style={{ marginBottom: 0 }}>

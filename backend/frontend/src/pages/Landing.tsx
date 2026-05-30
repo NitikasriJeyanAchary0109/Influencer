@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Globe, ArrowRight, Instagram, Twitter, Sparkles, TrendingUp, Coins, Users, CheckCircle, ArrowRightLeft } from 'lucide-react'
+import { Globe, ArrowRight, Instagram, Twitter, Sparkles, TrendingUp, Coins, Users, CheckCircle, ArrowRightLeft, ShieldCheck, BadgeCheck, Lock } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 const Landing: React.FC = () => {
   const navigate = useNavigate()
+  const { user, signOut } = useAuth()
   const [emailInput, setEmailInput] = useState('')
 
   const handleSignup = (e: React.FormEvent) => {
@@ -99,12 +101,30 @@ const Landing: React.FC = () => {
               <a href="#about" className="text-gray-300 hover:text-white transition-colors text-sm font-semibold">About</a>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="text-gray-300 hover:text-white transition-colors text-sm font-semibold px-4 py-2">Login</Link>
-            <Link to="/checkout?plan=growth" className="bg-[#D3F971] text-[#1a1a1a] font-bold text-sm px-5 py-2.5 rounded-2xl hover:bg-[#c2e855] transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-md">
-              Start Free Trial
-            </Link>
-          </div>
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-gray-300 text-sm font-semibold hidden md:inline-flex items-center gap-1.5 bg-white/5 border border-white/10 px-3 py-1.5 rounded-xl">
+                  Logged in as <strong className="text-white">{user.brand?.brandName || user.email}</strong>
+                  {user.brand?.isVerified && <BadgeCheck size={14} className="text-blue-500 fill-blue-500" />}
+                </span>
+                <button 
+                  onClick={async () => { await signOut(); navigate('/') }} 
+                  className="text-gray-300 hover:text-white transition-colors text-sm font-semibold px-4 py-2"
+                >
+                  Sign Out
+                </button>
+                <Link to="/dashboard" className="bg-[#D3F971] text-[#1a1a1a] font-bold text-sm px-5 py-2.5 rounded-2xl hover:bg-[#c2e855] transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-md">
+                  Go to Dashboard
+                </Link>
+              </div>
+            ) : (
+              <div className="flex items-center gap-4">
+                <Link to="/login" className="text-gray-300 hover:text-white transition-colors text-sm font-semibold px-4 py-2">Login</Link>
+                <Link to="/checkout?plan=growth" className="bg-[#D3F971] text-[#1a1a1a] font-bold text-sm px-5 py-2.5 rounded-2xl hover:bg-[#c2e855] transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-md">
+                  Start Free Trial
+                </Link>
+              </div>
+            )}
         </div>
       </nav>
 
@@ -127,24 +147,40 @@ const Landing: React.FC = () => {
             Stop juggling spreadsheets. Track influencers, measure real-time ROI, and scale your brand partnerships on a single, stunning dashboard.
           </p>
 
-          <div className="max-w-md mx-auto pt-4">
-            <form onSubmit={handleSignup} className="bg-white/5 backdrop-blur-md rounded-2xl p-2 flex flex-col sm:flex-row gap-2 border border-white/10 shadow-lg focus-within:border-[#D3F971]/50 transition-colors">
-              <input
-                type="email"
-                placeholder="Enter corporate email"
-                className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-gray-500 px-4 py-3 text-sm focus:ring-0"
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                required
-              />
-              <button
-                type="submit"
-                className="bg-[#D3F971] text-[#1a1a1a] hover:bg-[#c2e855] transition-all font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] duration-200"
-              >
-                Get Started <ArrowRight size={16} />
-              </button>
-            </form>
-          </div>
+          {user ? (
+            <div className="pt-4 space-y-4 max-w-xs mx-auto">
+              <div className="inline-flex items-center gap-2 bg-[#D3F971]/10 border border-[#D3F971]/20 px-4 py-2 rounded-2xl text-sm font-semibold text-[#D3F971]">
+                <ShieldCheck size={16} /> Verified Session Active
+              </div>
+              <div>
+                <Link
+                  to="/dashboard"
+                  className="bg-[#D3F971] text-[#1a1a1a] hover:bg-[#c2e855] transition-all font-bold px-8 py-4 rounded-xl inline-flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] duration-200 w-full"
+                >
+                  Go to Dashboard <ArrowRight size={18} />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="max-w-md mx-auto pt-4">
+              <form onSubmit={handleSignup} className="bg-white/5 backdrop-blur-md rounded-2xl p-2 flex flex-col sm:flex-row gap-2 border border-white/10 shadow-lg focus-within:border-[#D3F971]/50 transition-colors">
+                <input
+                  type="email"
+                  placeholder="Enter corporate email"
+                  className="bg-transparent border-none outline-none flex-1 text-white placeholder:text-gray-500 px-4 py-3 text-sm focus:ring-0"
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="bg-[#D3F971] text-[#1a1a1a] hover:bg-[#c2e855] transition-all font-bold px-6 py-3 rounded-xl flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] duration-200"
+                >
+                  Get Started <ArrowRight size={16} />
+                </button>
+              </form>
+            </div>
+          )}
         </div>
       </header>
 
@@ -249,14 +285,14 @@ const Landing: React.FC = () => {
 
                 <div className="pt-8">
                   <button
-                    onClick={() => navigate(`/checkout?plan=${plan.planKey}`)}
+                    onClick={() => user ? navigate('/dashboard') : navigate(`/checkout?plan=${plan.planKey}`)}
                     className={`w-full font-bold py-3.5 px-6 rounded-2xl transition-colors ${
                       plan.highlighted
                         ? 'bg-[#1a1a1a] text-white hover:bg-black'
                         : 'bg-[#333333] text-white hover:bg-[#444444] border border-white/10'
                     }`}
                   >
-                    Select Plan
+                    {user ? 'Go to Dashboard' : 'Select Plan'}
                   </button>
                 </div>
               </div>
@@ -274,13 +310,62 @@ const Landing: React.FC = () => {
           Join high-performance marketing teams who manage, track, and pay their influencers on InfluenceFlow.
         </p>
         <div className="pt-4">
-          <Link
-            to="/checkout?plan=growth"
-            className="bg-[#1a1a1a] hover:bg-black text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2 group"
-          >
-            Create Brand Profile
-            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1 duration-200" />
-          </Link>
+          {user ? (
+            <Link
+              to="/dashboard"
+              className="bg-[#1a1a1a] hover:bg-black text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2 group"
+            >
+              Go to Dashboard
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1 duration-200" />
+            </Link>
+          ) : (
+            <Link
+              to="/checkout?plan=growth"
+              className="bg-[#1a1a1a] hover:bg-black text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-xl transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2 group"
+            >
+              Create Brand Profile
+              <ArrowRight size={18} className="transition-transform group-hover:translate-x-1 duration-200" />
+            </Link>
+          )}
+        </div>
+      </section>
+
+      {/* About & Trust System Section */}
+      <section id="about" className="bg-white py-24 px-6 rounded-[48px] shadow-sm max-w-6xl mx-auto mb-16 border border-gray-100">
+        <div className="max-w-4xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
+              <ShieldCheck size={14} className="stroke-[2.5]" /> Trust & Verification Framework
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+              Zero-Scam Marketing Ecosystem
+            </h2>
+            <p className="text-gray-500 font-medium text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+              InfluenceFlow protects your ad-spend with double-sided verification layers, preventing influencer spoofing and brand payment default scams.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+            <div className="bg-[#f9fafb] p-8 rounded-3xl border border-gray-100 space-y-4">
+              <div className="w-12 h-12 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600">
+                <Lock size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-[#1a1a1a]">Official Brand Verification</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                Brands undergo business registry audit checks (GSTIN/Tax ID registry, business address, and corporate email domain checks) to verify their authenticity. This prevents bad actors from creating dummy brands and scamming creators.
+              </p>
+            </div>
+
+            <div className="bg-[#f9fafb] p-8 rounded-3xl border border-gray-100 space-y-4">
+              <div className="w-12 h-12 bg-[#D3F971]/20 rounded-2xl flex items-center justify-center text-[#1a1a1a]">
+                <BadgeCheck size={24} className="stroke-[2.5]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1a1a1a]">Influencer Audits & CRM Badges</h3>
+              <p className="text-gray-500 text-sm leading-relaxed font-medium">
+                Influencers imported from Instagram are verified against their real-time profile API data to prevent spoof accounts. Brand managers can run manual audits to flag, approve, and display Trust checkmarks.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

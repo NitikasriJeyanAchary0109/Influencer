@@ -41,9 +41,11 @@ com/influenceflow/entity/Payment$PaymentBuilder.class
 com/influenceflow/dto/JwtAuthenticationResponse.class
 com/influenceflow/entity/Metric$MetricBuilder.class
 com/influenceflow/entity/Brand$BrandBuilder.class
+com/influenceflow/service/InstagramLookupService.class
 com/influenceflow/dto/LoginRequest.class
 com/influenceflow/entity/Campaign.class
 com/influenceflow/repository/CampaignRepository.class
+com/influenceflow/controller/BrandController.class
 com/influenceflow/entity/Metric.class
 com/influenceflow/entity/Post$PostBuilder.class
 com/influenceflow/security/UserDetailsImpl.class

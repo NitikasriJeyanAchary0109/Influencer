@@ -74,6 +74,7 @@ public class AuthService {
             brand.setBrandId(UUID.randomUUID().toString());
             brand.setBrandName(registerRequest.getBrandName());
             brand.setIndustry(registerRequest.getBrandIndustry());
+            brand.setIsVerified(false);
             brandRepository.save(brand);
             user.setBrand(brand);
         }

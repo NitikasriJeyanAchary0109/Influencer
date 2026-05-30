@@ -29,20 +29,51 @@ public class InstagramLookupService {
     private static final Map<String, Map<String, Object>> MOCK_POPULAR_PROFILES = new HashMap<>();
     
     static {
-        MOCK_POPULAR_PROFILES.put("cristiano", Map.of("followers", 627000000, "following", 580, "engagementRate", 2.5));
-        MOCK_POPULAR_PROFILES.put("leomessi", Map.of("followers", 502000000, "following", 320, "engagementRate", 2.8));
-        MOCK_POPULAR_PROFILES.put("selenagomez", Map.of("followers", 429000000, "following", 290, "engagementRate", 1.9));
-        MOCK_POPULAR_PROFILES.put("kyliejenner", Map.of("followers", 400000000, "following", 95, "engagementRate", 1.5));
-        MOCK_POPULAR_PROFILES.put("therock", Map.of("followers", 397000000, "following", 750, "engagementRate", 1.2));
-        MOCK_POPULAR_PROFILES.put("mrbeast", Map.of("followers", 58000000, "following", 12, "engagementRate", 5.6));
-        MOCK_POPULAR_PROFILES.put("zuck", Map.of("followers", 14000000, "following", 120, "engagementRate", 3.2));
-        MOCK_POPULAR_PROFILES.put("nike", Map.of("followers", 306000000, "following", 150, "engagementRate", 0.8));
+        MOCK_POPULAR_PROFILES.put("cristiano", Map.of("fullName", "Cristiano Ronaldo", "followers", 627000000, "following", 580, "engagementRate", 2.5, "posts", 3600, "biography", "SIUUU ⚽️"));
+        MOCK_POPULAR_PROFILES.put("leomessi", Map.of("fullName", "Leo Messi", "followers", 502000000, "following", 320, "engagementRate", 2.8, "posts", 1100, "biography", "Bienvenidos a la cuenta oficial de Instagram de Lionel Messi."));
+        MOCK_POPULAR_PROFILES.put("selenagomez", Map.of("fullName", "Selena Gomez", "followers", 429000000, "following", 290, "engagementRate", 1.9, "posts", 1900, "biography", "By Selena Gomez. ✨"));
+        MOCK_POPULAR_PROFILES.put("kyliejenner", Map.of("fullName", "Kylie Jenner", "followers", 400000000, "following", 95, "engagementRate", 1.5, "posts", 6800, "biography", "Kylie Cosmetics"));
+        MOCK_POPULAR_PROFILES.put("therock", Map.of("fullName", "Dwayne Johnson", "followers", 397000000, "following", 750, "engagementRate", 1.2, "posts", 7400, "biography", "Founder @projectrock @teremana"));
+        MOCK_POPULAR_PROFILES.put("mrbeast", Map.of("fullName", "MrBeast", "followers", 58000000, "following", 12, "engagementRate", 5.6, "posts", 210, "biography", "I want to make the world a better place."));
+        MOCK_POPULAR_PROFILES.put("zuck", Map.of("fullName", "Mark Zuckerberg", "followers", 14000000, "following", 120, "engagementRate", 3.2, "posts", 180, "biography", "Building the future of connection."));
+        MOCK_POPULAR_PROFILES.put("nike", Map.of("fullName", "Nike", "followers", 306000000, "following", 150, "engagementRate", 0.8, "posts", 1000, "biography", "Just Do It."));
         
         // Requested custom influencers
-        MOCK_POPULAR_PROFILES.put("nitikasri0109_ns", Map.of("followers", 299, "following", 400, "engagementRate", 8.5));
-        MOCK_POPULAR_PROFILES.put("cherakula.bhavishya14", Map.of("followers", 134, "following", 146, "engagementRate", 6.2));
-        MOCK_POPULAR_PROFILES.put("silvi_158_", Map.of("followers", 100, "following", 117, "engagementRate", 7.1));
-        MOCK_POPULAR_PROFILES.put("dhanux_a", Map.of("followers", 231, "following", 193, "engagementRate", 5.4));
+        Map<String, Object> nitika = new HashMap<>();
+        nitika.put("fullName", "nitikasri♡");
+        nitika.put("followers", 299);
+        nitika.put("following", 400);
+        nitika.put("posts", 2);
+        nitika.put("engagementRate", 8.5);
+        nitika.put("biography", "");
+        MOCK_POPULAR_PROFILES.put("nitikasri0109_ns", nitika);
+
+        Map<String, Object> cherakula = new HashMap<>();
+        cherakula.put("fullName", "😌");
+        cherakula.put("followers", 134);
+        cherakula.put("following", 146);
+        cherakula.put("posts", 0);
+        cherakula.put("engagementRate", 6.2);
+        cherakula.put("biography", "Friends who slay together...stay together (LB²P)💗♾️");
+        MOCK_POPULAR_PROFILES.put("cherakula.bhavishya14", cherakula);
+
+        Map<String, Object> silvi = new HashMap<>();
+        silvi.put("fullName", "💕");
+        silvi.put("followers", 100);
+        silvi.put("following", 117);
+        silvi.put("posts", 2);
+        silvi.put("engagementRate", 7.1);
+        silvi.put("biography", "");
+        MOCK_POPULAR_PROFILES.put("silvi_158_", silvi);
+
+        Map<String, Object> dhanux = new HashMap<>();
+        dhanux.put("fullName", "🤍");
+        dhanux.put("followers", 231);
+        dhanux.put("following", 193);
+        dhanux.put("posts", 2);
+        dhanux.put("engagementRate", 5.4);
+        dhanux.put("biography", "🍷just : )♡");
+        MOCK_POPULAR_PROFILES.put("dhanux_a", dhanux);
     }
 
     public Map<String, Object> getInstagramProfile(String handle) {
@@ -99,6 +130,9 @@ public class InstagramLookupService {
                 result.put("followers", mockData.get("followers"));
                 result.put("following", mockData.get("following"));
                 result.put("engagementRate", mockData.get("engagementRate"));
+                result.put("fullName", mockData.get("fullName"));
+                result.put("posts", mockData.get("posts"));
+                result.put("biography", mockData.get("biography"));
             } else {
                 result.put("followers", generateFallbackFollowers(cleanHandle));
                 result.put("following", generateFallbackFollowing(cleanHandle));
