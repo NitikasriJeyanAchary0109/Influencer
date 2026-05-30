@@ -8,12 +8,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.influenceflow.service.InstagramLookupService;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/influencers")
 public class InfluencerController {
 
     @Autowired
     private InfluencerService influencerService;
+
+    @Autowired
+    private InstagramLookupService instagramLookupService;
+
+    @GetMapping("/lookup")
+    public ResponseEntity<Map<String, Object>> lookupInfluencer(@RequestParam String handle) {
+        return ResponseEntity.ok(instagramLookupService.getInstagramProfile(handle));
+    }
 
     @GetMapping
     public List<Influencer> getAllInfluencers() {

@@ -1,0 +1,2112 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.influenceflow:influenceflow >-------------------
+[INFO] Building influenceflow 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.3.0:run (default-cli) > test-compile @ influenceflow >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ influenceflow ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ influenceflow ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 42 source files with javac [debug parameters release 21] to target/classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/security/JwtTokenProvider.java: /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/security/JwtTokenProvider.java uses or overrides a deprecated API.
+[INFO] /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/main/java/com/influenceflow/security/JwtTokenProvider.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ influenceflow ---
+[INFO] skip non existing resourceDirectory /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ influenceflow ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.3.0:run (default-cli) < test-compile @ influenceflow <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.3.0:run (default-cli) @ influenceflow ---
+[INFO] Attaching agents: []
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.0)
+
+2026-05-30T09:39:38.795+05:30  INFO 51100 --- [           main] c.i.InfluenceFlowApplication             : Starting InfluenceFlowApplication using Java 21.0.8 with PID 51100 (/Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend/target/classes started by nitikasrijeyanachary in /Users/nitikasrijeyanachary/Desktop/INFLUENCER/backend)
+2026-05-30T09:39:38.797+05:30  INFO 51100 --- [           main] c.i.InfluenceFlowApplication             : No active profile set, falling back to 1 default profile: "default"
+2026-05-30T09:39:39.261+05:30  INFO 51100 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-30T09:39:39.307+05:30  INFO 51100 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 9 JPA repository interfaces.
+2026-05-30T09:39:39.749+05:30  INFO 51100 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-05-30T09:39:39.758+05:30  INFO 51100 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-30T09:39:39.758+05:30  INFO 51100 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.24]
+2026-05-30T09:39:39.789+05:30  INFO 51100 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-05-30T09:39:39.790+05:30  INFO 51100 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 967 ms
+2026-05-30T09:39:39.851+05:30  INFO 51100 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-30T09:39:40.155+05:30  INFO 51100 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67688110
+2026-05-30T09:39:40.156+05:30  INFO 51100 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-30T09:39:40.222+05:30  INFO 51100 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-30T09:39:40.262+05:30  INFO 51100 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-05-30T09:39:40.284+05:30  INFO 51100 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-05-30T09:39:40.507+05:30  INFO 51100 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-30T09:39:40.571+05:30  WARN 51100 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-30T09:39:41.245+05:30  INFO 51100 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: 
+    alter table campaigns 
+       modify column description TEXT
+2026-05-30T09:39:41.400+05:30  INFO 51100 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-30T09:39:41.683+05:30  INFO 51100 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2026-05-30T09:39:41.835+05:30  WARN 51100 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-30T09:39:42.095+05:30  INFO 51100 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7154a248, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@435a4d2d, org.springframework.security.web.context.SecurityContextHolderFilter@642b2176, org.springframework.security.web.header.HeaderWriterFilter@7baea18b, org.springframework.web.filter.CorsFilter@253379ec, org.springframework.security.web.authentication.logout.LogoutFilter@2a9fd482, com.influenceflow.security.JwtAuthenticationFilter@61627c9d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d91e8c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f5314bc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@73c6ebec, org.springframework.security.web.session.SessionManagementFilter@1e387974, org.springframework.security.web.access.ExceptionTranslationFilter@14cc1f5c, org.springframework.security.web.access.intercept.AuthorizationFilter@10545d02]
+2026-05-30T09:39:42.320+05:30  INFO 51100 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-05-30T09:39:42.327+05:30  INFO 51100 --- [           main] c.i.InfluenceFlowApplication             : Started InfluenceFlowApplication in 3.765 seconds (process running for 3.988)
+2026-05-30T09:40:06.029+05:30  INFO 51100 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-30T09:40:06.029+05:30  INFO 51100 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-30T09:40:06.034+05:30  INFO 51100 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        i1_0.influencer_id,
+        i1_0.brand_id,
+        i1_0.created_at,
+        i1_0.email,
+        i1_0.engagement_rate,
+        i1_0.followers,
+        i1_0.instagram_handle,
+        i1_0.name,
+        i1_0.niche,
+        i1_0.phone 
+    from
+        influencers i1_0 
+    where
+        i1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        i1_0.influencer_id,
+        i1_0.brand_id,
+        i1_0.created_at,
+        i1_0.email,
+        i1_0.engagement_rate,
+        i1_0.followers,
+        i1_0.instagram_handle,
+        i1_0.name,
+        i1_0.niche,
+        i1_0.phone 
+    from
+        influencers i1_0 
+    where
+        i1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        i1_0.influencer_id,
+        i1_0.brand_id,
+        i1_0.created_at,
+        i1_0.email,
+        i1_0.engagement_rate,
+        i1_0.followers,
+        i1_0.instagram_handle,
+        i1_0.name,
+        i1_0.niche,
+        i1_0.phone 
+    from
+        influencers i1_0 
+    where
+        i1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        i1_0.influencer_id,
+        i1_0.brand_id,
+        i1_0.created_at,
+        i1_0.email,
+        i1_0.engagement_rate,
+        i1_0.followers,
+        i1_0.instagram_handle,
+        i1_0.name,
+        i1_0.niche,
+        i1_0.phone 
+    from
+        influencers i1_0 
+    where
+        i1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Error fetching Instagram data: API returned error: Not Found, please check username
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Error fetching Instagram data: API returned error: Not Found, please check username
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Error fetching Instagram data: API returned error: Not Found, please check username
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Error fetching Instagram data: API returned error: Not Found, please check username
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        u1_0.brand_id,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+Hibernate: 
+    select
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry 
+    from
+        brands b1_0 
+    where
+        b1_0.brand_id=?
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.name 
+    from
+        roles r1_0 
+    where
+        r1_0.id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Error fetching Instagram data: API returned error: Not Found, please check username
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
+Hibernate: 
+    select
+        u1_0.user_id,
+        b1_0.brand_id,
+        b1_0.brand_name,
+        b1_0.contact_email,
+        b1_0.contact_phone,
+        b1_0.created_at,
+        b1_0.industry,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.password,
+        u1_0.role_id,
+        r1_0.id,
+        r1_0.name 
+    from
+        users u1_0 
+    left join
+        brands b1_0 
+            on b1_0.brand_id=u1_0.brand_id 
+    join
+        roles r1_0 
+            on r1_0.id=u1_0.role_id 
+    where
+        u1_0.user_id=?
+Hibernate: 
+    select
+        c1_0.campaign_id,
+        c1_0.brand_id,
+        c1_0.budget,
+        c1_0.campaign_name,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.end_date,
+        c1_0.start_date,
+        c1_0.status 
+    from
+        campaigns c1_0 
+    where
+        c1_0.brand_id=?
